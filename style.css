@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css?family=Heebo:300&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #4b0082; /* Indigo for primary elements */
+  --secondary-color: #e6e6fa; /* Lavender for secondary elements */
+  --background-color: #fafafa; /* Very light background color */
+  --clock-background-color: #877a91; /* Very light background color */
+  --needle-color: #4b0082; /* Indigo for clock needles */
+  --second-needle-color: #ff69b4; /* Hot pink for second needle */
+  --center-point-color: #ff69b4; /* Hot pink for center point */
+  --text-color: #4b0082; /* Indigo for text */
+  --border-color: #8a2be2; /* BlueViolet for border */
+  --border-animation: border 5s linear infinite;
+}
+
+html {
+  transition: all 0.5s ease-in;
+}
+
+html.dark {
+  --primary-color: #e6e6fa; /* Lavender for primary elements in dark mode */
+  --secondary-color: #4b0082; /* Indigo for secondary elements in dark mode */
+  --background-color: #000000; /* Dark indigo for background in dark mode */
+  --text-color: #e6e6fa; /* Lavender for text in dark mode */
+  --border-color: #ff69b4a8; /* Hot pink for border in dark mode */
+  --clock-background-color: #e6e6fa;
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body {
+  font-family: "Heebo", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+
+@keyframes border {
+  0% {
+    border-color: var(--border-color);
+  }
+  50% {
+    border-color: var(--secondary-color);
+  }
+  100% {
+    border-color: var(--border-color);
+  }
+}
+
+.toggle {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  position: relative;
+  /* top: 10px; */
+  left: 90px;
+  cursor: pointer;
+}
+
+.toggle:focus {
+  outline: none;
+}
+
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 5px solid var(--border-color);
+  border-radius: 15px;
+  padding: 20px;
+  animation: var(--border-animation);
+}
+
+.clock {
+    background-color: var(--clock-background-color);
+    border-radius: 50%;
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.needle {
+  background-color: var(--needle-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 65px;
+  width: 3px;
+  transform-origin: bottom center;
+  transition: all 0.5s ease-in;
+}
+
+.needle.hour {
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.needle.minute {
+  transform: translate(-50%, -100%) rotate(0deg);
+  height: 100px;
+}
+
+.needle.second {
+  background-color: var(--second-needle-color);
+  transform: translate(-50%, -100%) rotate(0deg);
+  height: 100px;
+}
+
+.center-point {
+  background-color: var(--second-needle-color);
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.center-point::after {
+  content: "";
+  background-color: var(--needle-color);
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.time {
+  font-size: 60px;
+}
+
+.date {
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.date .circle {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 18px;
+  transition: all 0.5s ease-in;
+}
